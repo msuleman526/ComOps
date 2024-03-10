@@ -22,8 +22,7 @@ const LayoutProvider = ({ children }) => {
       <Sider width={250} breakpoint="md" onBreakpoint={handleBreakpoint} trigger={null} collapsible collapsed={collapsed} collapsedWidth={0}>
         <div style={{ marginBlock: '20px', paddingInline: '20px' }}>
           <Flex gap={'small'}>
-            <Image width={40} height={30} src={img} alt="img" />
-            <Typography.Title level={4}>CHAT GPT</Typography.Title>
+            <Image width={250} height={50} src={img} alt="img" />
           </Flex>
         </div>
         <Menu
@@ -32,19 +31,14 @@ const LayoutProvider = ({ children }) => {
           defaultSelectedKeys={['1']}
           items={[
             {
-              key: '1',
+              key: '2',
               icon: <FaHome />,
               label: 'Dashboard',
             },
             {
-              key: '2',
+              key: '1',
               icon: <FaDrawPolygon />,
-              label: 'Polygon',
-            },
-            {
-              key: '3',
-              icon: <FaCircle />,
-              label: 'Circle',
+              label: 'Create New Incident',
             },
           ]}
         />
