@@ -1,5 +1,5 @@
 import { ConfigProvider } from 'antd'
-import GoogleMap from './components/GoogleMap'
+import GoogleMap from './Pages/GoogleMap'
 import LayoutProvider from './layout/LayoutProvider'
 
 function App() {
