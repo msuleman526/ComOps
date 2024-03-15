@@ -1,16 +1,16 @@
-import { Modal, Select } from "antd";
+import { Avatar, List, Modal, Select } from "antd";
 
 const ApparatusPopup = ({isOpen, setIsOpen, selectApparatus}) => {
 
     let options = [
-        "/assets/images/fire/atv.png",
-        "/assets/images/fire/boat.png",
-        "/assets/images/fire/brush.png",
-        "/assets/images/fire/car.png",
-        "/assets/images/fire/fire-truck.png",
-        "/assets/images/fire/ladder_truck.png",
-        "/assets/images/fire/rescue.png",
-        "/assets/images/fire/tanker.png",
+        {name: "ATV", image: "/assets/images/fire/atv.png"},
+        {name: "Boat", image: "/assets/images/fire/boat.png"},
+        {name: "Brush", image: "/assets/images/fire/brush.png"},
+        {name: "Squad", image: "/assets/images/fire/car.png"},
+        {name: "Fire Truck", image: "/assets/images/fire/fire-truck.png"},
+        {name: "Ladder Truck", image: "/assets/images/fire/ladder_truck.png"},
+        {name: "Rescue", image: "/assets/images/fire/rescue.png"},
+        {name: "Tanker", image: "/assets/images/fire/tanker.png"},
     ]
 
     const onChange = (val) => {
@@ -25,14 +25,13 @@ const ApparatusPopup = ({isOpen, setIsOpen, selectApparatus}) => {
             placeholder="Select Apparatus Type"
             optionFilterProp="children"
             onChange={onChange}
-        ><Select.Option value={0}>ATV</Select.Option>
-        <Select.Option value={1}>Boat</Select.Option>
-        <Select.Option value={2}>Brush</Select.Option>
-        <Select.Option value={3}>Squad</Select.Option>
-        <Select.Option value={4}>Fire Truck</Select.Option>
-        <Select.Option value={5}>Ladder Truck</Select.Option>
-        <Select.Option value={6}>Rescue</Select.Option>
-        <Select.Option value={7}>Tanker</Select.Option>
+        >{
+            options.map((apparatus, index) => {
+                return (<Select.Option value={index}>
+                     <List.Item.Meta style={{display: 'inline-flex', gap: '5px', padding: '5px'}} avatar={<Avatar src={apparatus.image}/>} title={apparatus.name}/>
+                </Select.Option>)
+            })
+        }
         </Select>
     </Modal>)
 }

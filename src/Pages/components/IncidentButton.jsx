@@ -6,17 +6,24 @@ const items = [
       label: "Apparatus"
     },
     {
-        type: 'divider',
+      type: 'divider',
     },
     {
       key: '2',
-      label: "Area"
+      label: "Hazard/Dangerous Object"
     },
     {
         type: 'divider',
     },
     {
       key: '3',
+      label: "Area"
+    },
+    {
+        type: 'divider',
+    },
+    {
+      key: '4',
       label: "Zone"
     },
   ];
