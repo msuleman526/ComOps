@@ -19,6 +19,7 @@ const ApparatusPopup = ({isOpen, setIsOpen, selectApparatus}) => {
     }
 
     return (<Modal title="Choose Appratus Type" footer="" open={isOpen} onCancel={() => setIsOpen(false)}>
+         <h3 style={{marginTop: '10px', fontSize: '13px'}}>Select Apparatus</h3>
          <Select
             style={{width: '100%'}}
             showSearch
