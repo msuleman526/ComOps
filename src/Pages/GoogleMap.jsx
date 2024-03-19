@@ -10,7 +10,7 @@ import {
 } from "./components/MapUtils";
 import IncidentButton from "./components/IncidentButton";
 import ApparatusPopup from "./components/ApparatusPopup";
-import { message } from "antd";
+import { Space, message } from "antd";
 import HazardsPopup from "./components/HazardsPopup";
 import AppratusLblPopup from "./components/AppratusLblPopup";
 import AreaPopup from "./components/AreaPopup";
@@ -205,6 +205,27 @@ const GoogleMap = () => {
           />
         )}
       </GoogleMapReact>
+      <Space
+        direction="vertical"
+        style={{
+          left: "10px",
+          padding: "3px",
+          top: "10px",
+          borderRadius: "4px",
+          position: "absolute",
+          background: "white",
+        }}
+      >
+        <Space wrap>
+          {apparatusDrawingEnabled && selectedApparatus != null
+            ? "Draw " + selectedApparatus.name + " By Tapping any where on map"
+            : harzardDrawingEnabled && selectedHazard != null
+            ? "Draw " + selectedHazard.name + " By Tapping any where on map"
+            : isAreaDrawing
+            ? "Draw Area/Zone on map."
+            : "Create New Incident"}
+        </Space>
+      </Space>
       {isAreaDrawing == false && (
         <IncidentButton onMenuSelection={onAddMenuClick} />
       )}
