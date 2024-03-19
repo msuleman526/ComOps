@@ -1,5 +1,5 @@
 import { Avatar, List, Modal, Select } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const HazardsPopup = ({isOpen, setIsOpen, selectedHazard}) => {
 
@@ -24,6 +24,15 @@ const HazardsPopup = ({isOpen, setIsOpen, selectedHazard}) => {
     ]
 
     let [selectHazard, setSelectHazard] = useState(null)
+    let [selectedHazardIndex, setSelectHazardIndex] = useState(-1)
+
+    useEffect(() => {
+        if(isOpen){
+            console.log("Chekcing")
+            setSelectHazard(null)
+            setSelectHazardIndex(-1)
+        }
+    }, [isOpen])
 
     const onChange = (index) => {
         if(harzards[index].children == true){
@@ -31,6 +40,7 @@ const HazardsPopup = ({isOpen, setIsOpen, selectedHazard}) => {
         }else{
             setSelectHazard(null)
             selectedHazard(harzards[index])
+            setSelectHazardIndex(-1)
             setIsOpen(false)
         }
     }
@@ -47,6 +57,7 @@ const HazardsPopup = ({isOpen, setIsOpen, selectedHazard}) => {
             showSearch
             placeholder="Select Hazard Type"
             optionFilterProp="children"
+            value={(selectedHazardIndex == -1) ? "Hazard Type" : selectedHazardIndex}
             onChange={onChange}
         >{
             harzards.map((harzard, index) => {

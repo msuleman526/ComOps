@@ -1,5 +1,5 @@
 import { Avatar, List, Modal, Select } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ApparatusPopup = ({ isOpen, setIsOpen, selectApparatus }) => {
   let [selectedApparatusIndex, setSelectedApparatusIndex] = useState(-1);
@@ -99,8 +99,8 @@ const ApparatusPopup = ({ isOpen, setIsOpen, selectApparatus }) => {
     ],
     [
       {
-        name: "EMS Helicopter",
-        image: "/assets/images/fire/EMS_Helicopter.png",
+        name: "Ambulance",
+        image: "/assets/images/fire/ambulance.png",
         children: false,
       },
     ],
@@ -112,7 +112,7 @@ const ApparatusPopup = ({ isOpen, setIsOpen, selectApparatus }) => {
       },
       {
         name: "Command",
-        image: "",
+        image: "/assets/images/fire/police_suv.png",
         children: true,
         childs: [
           {
@@ -164,12 +164,19 @@ const ApparatusPopup = ({ isOpen, setIsOpen, selectApparatus }) => {
     ],
   ];
 
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedApparatusIndex(-1);
+      setSelectedChildApparatus(null);
+    }
+  }, [isOpen]);
+
   const onChildChangeApparatus = (val) => {
     let apparatus = selectedChildApparatus.childs[val];
     selectApparatus(apparatus);
-    setIsOpen(false);
     setSelectedChildApparatus(null);
     setSelectedApparatusIndex(-1);
+    setIsOpen(false);
   };
 
   const onApparatusTypeChange = (val) => {
@@ -201,6 +208,11 @@ const ApparatusPopup = ({ isOpen, setIsOpen, selectApparatus }) => {
       <Select
         style={{ width: "100%" }}
         showSearch
+        value={
+          selectedApparatusIndex == -1
+            ? "Apparatus Type"
+            : selectedApparatusIndex
+        }
         placeholder="Select Apparatus Type"
         optionFilterProp="children"
         onChange={onApparatusTypeChange}
